@@ -1,0 +1,29 @@
+# Bari data files (repo se bahar rakho: C:\earthscape-data\)
+*.csv
+!**/data-sample/*.csv
+!**/sample-data/*.csv
+*.parquet
+*.zip
+*.tif
+*.tiff
+*.nc
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+
+# Logs aur local files
+*.log
+.env
+credentials*.txt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
