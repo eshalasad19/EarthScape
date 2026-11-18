@@ -1,0 +1,7 @@
+avg_temp_c	2
+co2_ppm	2
+humidity_pct	1
+max_temp_c	1
+min_temp_c	2
+precip_mm	2
+TOTAL_ROWS	8
