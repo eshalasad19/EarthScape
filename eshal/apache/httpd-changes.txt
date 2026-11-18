@@ -1,0 +1,33 @@
+Apache httpd.conf changes (C:\Apache24\conf\httpd.conf)
+After any change run: C:\Apache24\bin\httpd.exe -k restart
+
+1) Port (only if port 80 is busy)
+   Find:    Listen 80
+   Replace: Listen 8080
+
+2) ServerName
+   Find:    #ServerName www.example.com:80
+   Replace: ServerName localhost
+
+3) Load balancing demo (optional, for documentation)
+   a) Uncomment these lines (remove the # at the start):
+      LoadModule proxy_module modules/mod_proxy.so
+      LoadModule proxy_http_module modules/mod_proxy_http.so
+      LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
+      LoadModule slotmem_shm_module modules/mod_slotmem_shm.so
+      LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so
+
+   b) Add this block at the END of the file.
+      Keep it commented (# at the start of each line) until two
+      backend servers are actually running on ports 8081 and 8082:
+
+      <Proxy "balancer://climatecluster">
+          BalancerMember "http://localhost:8081"
+          BalancerMember "http://localhost:8082"
+          ProxySet lbmethod=byrequests
+      </Proxy>
+      ProxyPass "/app" "balancer://climatecluster"
+      ProxyPassReverse "/app" "balancer://climatecluster"
+
+Document root for the documentation page: C:\Apache24\htdocs\index.html
+(copy index.html from this folder there)
